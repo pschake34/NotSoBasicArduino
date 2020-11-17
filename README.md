@@ -16,8 +16,8 @@ backup of the code, just in case Arduino Create goes away.
 
 ### Description & Code
 
-This project accomplishes two things - LED fades in and out sinusoidally, and the brightness of the LED is visualized in the serial monitor. My code 
-contains two main functions: one which controls the variation of the brightness, and another which visualizes the brightness in the serial monitor.
+This project accomplishes two things - making an LED fade in and out sinusoidally, and visualizing the brightness of the LED in the serial monitor. My 
+code contains two main functions: one which controls the variation of the brightness, and another which visualizes the brightness in the serial monitor.
 
 ##### Variation of brightness:
 

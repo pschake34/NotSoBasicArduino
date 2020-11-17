@@ -56,15 +56,17 @@ which also creates a newline so that the next brightness visualization will be a
 
 [Code in Arduino Create](https://create.arduino.cc/editor/pschake34/4d8e394c-59cf-47a7-9e31-5b1134052651)
 
+[Project Folder](/led_fade)
+
 ### Images
 
-<img src="/led_fade/wiring.png" height=360px alt="LED Fade Wiring">
+<img src="/led_fade/wiring/wiring.png" height=360px alt="LED Fade Wiring">
 
 **The Wiring for LED Fade**
 
 <br>
 
-<img src="/led_fade/demo.gif" height=360px alt="LED Fade Demo">
+<img src="/led_fade/demo_video/demo.gif" height=360px alt="LED Fade Demo">
 
 **Demonstration of working project**
 

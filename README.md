@@ -60,15 +60,15 @@ which also creates a newline so that the next brightness visualization will be a
 
 ### Images
 
-<img src="/led_fade/wiring/wiring.png" height=360px alt="LED Fade Wiring">
-
 **The Wiring for LED Fade**
+
+<img src="/led_fade/wiring/wiring.png" height=360px alt="LED Fade Wiring">
 
 <br>
 
-<img src="/led_fade/demo_video/demo.gif" height=360px alt="LED Fade Demo">
-
 **Demonstration of working project**
+
+<img src="/led_fade/demo_video/demo.gif" height=360px alt="LED Fade Demo">
 
 ### Reflection
 

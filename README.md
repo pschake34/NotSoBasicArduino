@@ -72,8 +72,8 @@ which also creates a newline so that the next brightness visualization will be a
 
 This being the first code project, it took me a bit of time to get back in the swing of things. I ran into problems left and right, but I was able to solve
 them quickly enough by searching the internet. It took me a while to figure out how to do the sinusoidal fade, but that was mostly due to me thinking that
-I could figure it out with only minimal searching. After a lot of debugging, I looked up how to do it and reverse engineered from there, which, after a
-short period of head-scratching, brought me to the desired solution.
+I could figure it out without looking anything up. After a lot of debugging, I looked up how to do a sinusoidal fade and reverse engineered from there, 
+which, after a short period of head-scratching, brought me to the desired solution.
 
 <br>
 <br>

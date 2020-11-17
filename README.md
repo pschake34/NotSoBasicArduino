@@ -20,7 +20,7 @@ The LED fades in and out sinusoidally, and visualizes its brightness in the seri
 contains two main functions: one which controls the variation of the brightness, and another which
 visualizes the brightness in the serial monitor.
 
-Variation of brightness:
+##### Variation of brightness:
 
 ```C++
 void loop() {
@@ -37,7 +37,7 @@ function as the x-value. **offset** and **amplitude** are constants which have b
 constrain the sine wave to the proper values. **length** controls the size of the sine wave -- smaller 
 values make the wave smaller and vise versa.
 
-Visualization of brightness:
+##### Visualization of brightness:
 
 ```C++
 void visualizeBrightness(int brightness) {

@@ -16,9 +16,8 @@ backup of the code, just in case Arduino Create goes away.
 
 ### Description & Code
 
-The LED fades in and out sinusoidally, and visualizes its brightness in the serial monitor. My code 
-contains two main functions: one which controls the variation of the brightness, and another which
-visualizes the brightness in the serial monitor.
+This project accomplishes two things - LED fades in and out sinusoidally, and the brightness of the LED is visualized in the serial monitor. My code 
+contains two main functions: one which controls the variation of the brightness, and another which visualizes the brightness in the serial monitor.
 
 ##### Variation of brightness:
 
@@ -32,10 +31,9 @@ void loop() {
 }
 ```
 
-Basically, counter goes up by one every time through the loop. The counter is then fed into the sine 
-function as the x-value. **offset** and **amplitude** are constants which have been set up to 
-constrain the sine wave to the proper values. **length** controls the size of the sine wave -- smaller 
-values make the wave smaller and vise versa.
+Basically, the counter goes up by one every time through the loop. The counter is then fed into the sine function as the x-value. **offset** and 
+**amplitude** are constants which have been set up to constrain the sine wave to the proper values. **length** controls the size of the sine wave 
+-- smaller values make the wave smaller, and vise versa.
 
 ##### Visualization of brightness:
 
@@ -49,7 +47,7 @@ void visualizeBrightness(int brightness) {
 }
 ```
 
-The brightness is divided by 6 so that the graph isn't quite so large, then a for loop prints "=" for each point of brightness. At the end, it prints "<",
+The brightness is divided by 6 so that the graph isn't quite so large, then a for loop prints "=" for each point of brightness. At the end, it prints ">",
 which also creates a newline so that the next brightness visualization will be a line lower.
 
 ### Evidence

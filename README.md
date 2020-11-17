@@ -54,14 +54,18 @@ which also creates a newline so that the next brightness visualization will be a
 
 ### Evidence
 
-https://create.arduino.cc/editor/pschake34/4d8e394c-59cf-47a7-9e31-5b1134052651
+[Code in Arduino Create](https://create.arduino.cc/editor/pschake34/4d8e394c-59cf-47a7-9e31-5b1134052651)
 
 ### Images
 
 <img src="/led_fade/wiring.png" height=360px alt="LED Fade Wiring">
+
 **The Wiring for LED Fade**
 
+<br>
+
 <img src="/led_fade/demo.gif" height=360px alt="LED Fade Demo">
+
 **Demonstration of working project**
 
 ### Reflection

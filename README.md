@@ -130,7 +130,7 @@ void visualizeBrightness(int brightness, char visualizationChar) {
 }
 ```
 
-The visualizeBrightness function is the same as [last time](visualization-of-brightness), but it adds the ability to specify which char is used to graph 
+The visualizeBrightness function is the same as [last time](#visualization-of-brightness), but it adds the ability to specify which char is used to graph 
 the function.
 
 ### Evidence

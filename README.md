@@ -130,7 +130,7 @@ void visualizeBrightness(int brightness, char visualizationChar) {
 }
 ```
 
-The visualizeBrightness function is the same as (last time)[visualization-of-brightness-1], but it adds the ability to specify which char is used to graph 
+The visualizeBrightness function is the same as [last time](visualization-of-brightness), but it adds the ability to specify which char is used to graph 
 the function.
 
 ### Evidence
@@ -151,8 +151,8 @@ the function.
 
 ### Reflection
 
-This project was very satisfying to finish and watch it work. The only major problem that I ran into was with identifying where the end of one wave had 
-ended. At first, I thought that I could just check for when a wave had reached *0* and advance the cycleCounter that way, but I found that if I got a very
+This project was very satisfying to finish and watch it work. The only major problem that I ran into was with identifying where the end of one wave was. 
+At first, I thought that I could just check for when a wave had reached *0* and advance the cycleCounter that way, but I found that if I got a very
 large wave, there might be two *0*'s at the bottom of the wave, which would advance the cycleCounter twice, creating a problem. The second idea I had was
 that I could just figure how long a wave was, and then recognize when a wave had been completed that way. This method was helped by the realization that 
 my sineLength variable was also the amount of brightness values in one wave. However, this solution also posed its own problem -- when starting the 

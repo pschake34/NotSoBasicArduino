@@ -7,6 +7,7 @@ backup of the code, just in case Arduino Create goes away.
 
 * [LED_Fade](#LED_Fade)
 * [Finite_LED_Blinker](#Finite_LED_Blinker)
+* [Arduino Review](#arduino-review)
 * [Hello_Functions](#Hello_Functions)
 
 <br>
@@ -158,3 +159,150 @@ that I could just figure how long a wave was, and then recognize when a wave had
 my sineLength variable was also the amount of brightness values in one wave. However, this solution also posed its own problem -- when starting the 
 counter for the x-values at *0*, the wave would start part of the way through. My solution to this problem, thankfully, was simple. I found that the wave 
 would start exactly *1/3* of the way through, so I could just subtract *1/3* of the sineLength from the counter at the start of the loop.
+
+<br>
+<br>
+
+# Arduino Review
+
+### Description & Code
+
+This assignment is just a review of some things that we learned last year in Engineering I. The assignment was broken into two parts - the first part was 
+to make an LED blink with a delay of 1000ms, and make it blink faster by 100ms until the delay was only 100ms, at which point it would continue to blink 
+but not get any faster. The second part of the assignment was to do the same thing, but only let it blink when a button was pressed. Unfortunately, most of 
+the class didn't have a button, so we improvised with [the circuit](#images-2) that is below. 
+
+#### Part 1
+
+In order to continue the trend, I diverged significantly from the original instructions for the project. Instead of simply continuing to blink with a 100ms 
+delay forever, I made my LED go faster and slower. Once the delay reached 100ms, I would start adding 100ms until it reached 1000ms. However, I didn't stop 
+there. Next, I added a second LED into the mix. Now the first LED would blink increasingly quickly, and blink back and forth with the second LED. The 
+second LED would blink increasingly slowly, and then the two LED's would blink back and forth. This cycle was accomplished with two functions:
+
+##### LED Cycle
+
+```C++
+void ledCycle(int led, bool descending) {   //Goes through a descending or ascending sequence with an LED
+  if (descending) {
+    delayVar = 1000;
+    delayChange = -100;
+    delayLimit = 100;
+  } else {
+    delayVar = 100;
+    delayChange = 100;
+    delayLimit = 1000;
+  }
+
+  while (true) {
+    digitalWrite(led, HIGH);
+    delay(delayVar);
+    digitalWrite(led, LOW);
+    delay(delayVar);
+    delayVar = delayVar + delayChange;
+
+    if (descending && delayVar <= delayLimit) {   //stop clause if descending
+      break;
+    } else if (!descending && delayVar >= delayLimit) {   //stop clause if not descending
+      break;
+    }
+  }
+}
+```
+
+The ledCycle function makes a specified LED blink increasingly quickly or increasingly slowly, as specified by the descending option. Basically, it adds 
+the delay change to the delay variable until the delay variable reaches the limit, at which point it breaks the loop.
+
+##### Transition
+
+```C++
+void transition(int led1, int led2, int delayVar) {   //Blinks between 2 LED's with a specified delay
+  int counter = 0;
+  while (counter < 6) {
+    digitalWrite(led1, HIGH);
+    digitalWrite(led2, LOW);
+    delay(delayVar);
+    digitalWrite(led1, LOW);
+    digitalWrite(led2, HIGH);
+    delay(delayVar);
+    counter++;
+  }
+}
+```
+The transition function makes two LED's blink back and forth at a specified delay. The LED's blink back and forth 6 times and then stop. This function is 
+used between the two LED cycles in the loop() to make the sequence seem more natural.
+
+#### Part 2
+
+In this part of the assignment, I stayed on track with the instructions more, but I still played around with it a bit. I only used one LED, which meant 
+that most of the code I wrote for the previous half of the assignment was unnecessary. Therefore, I scrapped the two functions I had made, and put 
+everything into the loop function.
+
+##### Loop Function
+
+```C++
+void loop() {
+  buttonState = digitalRead(btnPin);
+
+  if (buttonState == HIGH) {
+    Serial.print("LED is blinking with a delay of ");
+    Serial.println(delayVar);
+    digitalWrite(ledPin, HIGH);
+    delay(delayVar);
+    digitalWrite(ledPin, LOW);
+    delay(delayVar);
+    delayVar = delayVar + delayChange;    //changes the delay for the next loop
+
+    if (descending && delayVar <= delayLimit) {   //stop clause if descending
+      fastBlinkCounter++;
+      delayChange = 0;
+      if (fastBlinkCounter >= 20) {   //makes sure that the LED has blinked fast long enough, and begins the increasing delay
+        delayVar = 100;
+        delayChange = 100;
+        delayLimit = 1000;
+        descending = false;
+        fastBlinkCounter = 0;
+      }
+    } else if (!descending && delayVar >= delayLimit) {   //stop clause if ascending
+      delayVar = 1000;
+      delayChange = -100;
+      delayLimit = 100;
+      descending = true;
+    }
+  } else {
+    Serial.println("LED is not blinking");
+    delay(250);
+  }
+}
+```
+
+As you can probably see, the basic concept is the same as the [LED Cycle](#led-cycle) function. I did add some new functionality, however, such as a period 
+of fast blinking after the blink delay reaches 100ms, checking if the button is pressed every time through the loop, and printing helpful messages in the 
+Serial monitor.
+
+### Evidence
+
+[Part 1 Code in Arduino Create](https://create.arduino.cc/editor/pschake34/c8e6787b-dd88-4ded-905f-08aeb58bcdb6/preview)
+
+[Part 2 Code in Arduino Create](https://create.arduino.cc/editor/pschake34/93297834-6397-4231-8a95-426bcd486201/preview)
+
+[Project Folder](/arduino_review)
+
+### Images
+
+**The Wiring for Part 1**
+
+<img src="/finite_blink/wiring/wiring.png" height=360px alt="Part 1 Wiring">
+
+**The Wiring for Part 2**
+
+<img src="/arduino_review/wiring/wiring.png" height=360px alt="Part 2 Wiring">
+
+**Demo of Part 2**
+
+<img src="/arduino_review/demo/demo.gif" height=360px alt="Part 2 Demo">
+
+### Reflection
+
+This project took longer than I was hoping, which was mostly due to me overdoing the first part of the assignment. Because I made the first part with two 
+LED's, I couldn't reuse a lot of the code in the second part. In the future, I'm going to try to think about how I can plan for the next part of the 
+assignment, and not overdo assignments while still having fun with them.

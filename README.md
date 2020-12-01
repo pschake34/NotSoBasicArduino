@@ -299,7 +299,7 @@ Serial monitor.
 
 **Demo of Part 2**
 
-<img src="/arduino_review/demo/demo.gif" height=360px alt="Part 2 Demo">
+<img src="/arduino_review/demo_video/demo.gif" height=360px alt="Part 2 Demo">
 
 ### Reflection
 

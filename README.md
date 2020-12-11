@@ -366,10 +366,16 @@ brightness value. The upper and lower limits can be any value, but I put them as
 
 **Wiring**
 
-<img src="/hello_functions/wiring/wiring.png" height=360px alt="Hello Functions Wiring">
+<img src="/hello_functions/wiring/wiring.png" height=720px alt="Hello Functions Wiring">
+
+**Demo of Hello Functions**
 
 <img src="/hello_functions/demo_video/demo.gif" height=360px alt="Hello Functions Demo">
 
 ### Reflection
 
-This assignment was very fun to make, especially because it was the first project where we really had something to interact with. One thing which I was especially happy with was my solution for inverted upper and lower limits in the fadeLed() function. In previous assignments I have used a variety of solutions to this problem (usually involving at least one more if statement), but this time I discovered that I could use || (or) in my if statement so that I could basically combine multiple if statements into one. Personally, I think this is a more elegant solution, though I can't fail to notice how ugly an extremely long if statement is.
+This assignment was very fun to make, especially because it was the first project where we really had something to interact with. One thing which I was 
+especially happy with was my solution for inverted upper and lower limits in the fadeLed() function. In previous assignments I have used a variety of 
+solutions to this problem (usually involving at least one more if statement), but this time I discovered that I could use || (or) in my if statement so 
+that I could basically combine multiple if statements into one. Personally, I think this is a more elegant solution, though I can't fail to notice how ugly 
+an extremely long if statement is.

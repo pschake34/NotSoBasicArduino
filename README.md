@@ -167,12 +167,12 @@ would start exactly *1/3* of the way through, so I could just subtract *1/3* of 
 
 ### Description & Code
 
-This assignment is just a review of some things that we learned last year in Engineering I. The assignment was broken into two parts - the first part was 
-to make an LED blink with a delay of 1000ms, and make it blink faster by 100ms until the delay was only 100ms, at which point it would continue to blink 
-but not get any faster. The second part of the assignment was to do the same thing, but only let it blink when a button was pressed. Unfortunately, most of 
-the class didn't have a button, so we improvised with [the circuit](#images-2) that is below. 
+This assignment is just a review of some things that we learned last year in Engineering I. The assignment was broken into two parts - the first part (called 
+Variable LED) was to make an LED blink with a delay of 1000ms, and make it blink faster by 100ms until the delay was only 100ms, at which point it would continue 
+to blink but not get any faster. The second part of the assignment (called Button LED) was to do the same thing, but only let it blink when a button was pressed. 
+Unfortunately, most of the class didn't have a button, so we improvised with [this circuit](#images-2). 
 
-#### Part 1
+#### Variable Blink
 
 In order to continue the trend, I diverged significantly from the original instructions for the project. Instead of simply continuing to blink with a 100ms 
 delay forever, I made my LED go faster and slower. Once the delay reached 100ms, I would start adding 100ms until it reached 1000ms. However, I didn't stop 
@@ -231,7 +231,7 @@ void transition(int led1, int led2, int delayVar) {   //Blinks between 2 LED's w
 The transition function makes two LED's blink back and forth at a specified delay. The LED's blink back and forth 6 times and then stop. This function is 
 used between the two LED cycles in the loop() to make the sequence seem more natural.
 
-#### Part 2
+#### Button LED
 
 In this part of the assignment, I stayed on track with the instructions more, but I still played around with it a bit. I only used one LED, which meant 
 that most of the code I wrote for the previous half of the assignment was unnecessary. Therefore, I scrapped the two functions I had made, and put 
@@ -281,23 +281,23 @@ Serial monitor.
 
 ### Evidence
 
-[Part 1 Code in Arduino Create](https://create.arduino.cc/editor/pschake34/c8e6787b-dd88-4ded-905f-08aeb58bcdb6/preview)
+[Variable LED Code in Arduino Create](https://create.arduino.cc/editor/pschake34/c8e6787b-dd88-4ded-905f-08aeb58bcdb6/preview)
 
-[Part 2 Code in Arduino Create](https://create.arduino.cc/editor/pschake34/93297834-6397-4231-8a95-426bcd486201/preview)
+[Button LED Code in Arduino Create](https://create.arduino.cc/editor/pschake34/93297834-6397-4231-8a95-426bcd486201/preview)
 
 [Project Folder](/arduino_review)
 
 ### Images
 
-**The Wiring for Part 1**
+**The Wiring for Variable Blink**
 
 <img src="/finite_blink/wiring/wiring.png" height=360px alt="Part 1 Wiring">
 
-**The Wiring for Part 2**
+**The Wiring for Button LED**
 
 <img src="/arduino_review/wiring/wiring.png" height=360px alt="Part 2 Wiring">
 
-**Demo of Part 2**
+**Demo of Button LED**
 
 <img src="/arduino_review/demo_video/demo.gif" height=360px alt="Part 2 Demo">
 

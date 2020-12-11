@@ -368,7 +368,7 @@ brightness value. The upper and lower limits can be any value, but I put them as
 
 <img src="/hello_functions/wiring/wiring.png" height=360px alt="Hello Functions Wiring">
 
-
+<img src="/hello_functions/demo_video/demo.gif" height=360px alt="Hello Functions Demo">
 
 ### Reflection
 

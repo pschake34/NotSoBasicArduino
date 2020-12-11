@@ -9,6 +9,7 @@ backup of the code, just in case Arduino Create goes away.
 * [Finite_LED_Blinker](#finite-led-blinker)
 * [Arduino Review](#arduino-review)
 * [Hello_Functions](#hello-functions)
+* [NewPing](#newping)
 
 <br>
 <br>
@@ -314,7 +315,7 @@ assignment, and not overdo assignments while still having fun with them.
 
 ### Description & Code
 
-The goal of the Hello Functions assignment was to make an arduino do something when given the input of an HC-SRO4 ultrasonic sensor, and to use functions 
+The goal of the Hello Functions assignment was to make an arduino do something when given the input of an HC-SR04 ultrasonic sensor, and to use functions 
 in the code which accomplishes this task. What I did was make two LEDs fade in proportion to the distance given by the ultrasonic sensor, and I used two 
 main functions to do so:
 
@@ -379,3 +380,44 @@ especially happy with was my solution for inverted upper and lower limits in the
 solutions to this problem (usually involving at least one more if statement), but this time I discovered that I could use || (or) in my if statement so 
 that I could basically combine multiple if statements into one. Personally, I think this is a more elegant solution, though I can't fail to notice how ugly 
 an extremely long if statement is.
+
+<br>
+<br>
+
+# NewPing
+
+### Description & Code
+
+The NewPing assignment was very similar to the Hello Functions assignment in that the goal was to do something interesting with the output of the HCSR04 ultrasonic sensor. Instead of creating the function which found the distance from the ultrasonic sensor to the object in front of it, we used the NewPing library, which has a handy function to do exactly what we needed. My version of the assignment used the distance from the sensor as the x-value for two sine functions which each changed the value of one of the LEDs. The brightness of each LED is inverse to the other, and the brightness of each LED is visualized in the Serial monitor by [this function](#visualization-of-brightness-1). I also made a function to change the brightness of an LED:
+
+##### Change Brightness
+
+```C++
+void changeBrightness(int ledPin, int distance, int sineLength, char visualizationChar) {   //changes the brightness of an LED according to the distance from HCSRO4
+  brightness = offset + amplitude * sin((TWO_PI / sineLength) * distance);  //distance is the x-value
+  visualizeBrightness(brightness, visualizationChar);
+  analogWrite(ledPin, brightness);
+}
+```
+
+This function changes the brightness of an LED according to the sensor distance and the sine length. It also visualizes the brightness of the LED in the Serial monitor. In my case, I used a sine length of 20 for both LEDs, and added a compensation of 1/2 the sine length on the sensor distance for one of the LEDs, which made the two LEDs always have the opposite brightness value to each other.
+
+### Evidence
+
+[Code in Arduino Create](https://create.arduino.cc/editor/pschake34/ba80b5f3-5570-49b5-a0ca-26262d7ead4a/preview)
+
+[Project Folder](/new_ping)
+
+### Images
+
+**Wiring**
+
+<img src="/new_ping/wiring/wiring.png" height=720px alt="NewPing Wiring">
+
+**Demo of NewPing**
+
+<img src="/new_ping/demo_video/demo.gif" height=360px alt="NewPing Demo">
+
+### Reflection
+
+This project was a breeze since I could reuse a lot of code which I had already written. The NewPing library was quite handy, and I especially liked that I could set a maxDistance limit. I ran into no issues, and I'm very happy with my finished product.

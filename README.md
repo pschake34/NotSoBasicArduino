@@ -5,15 +5,15 @@ backup of the code, just in case Arduino Create goes away.
 
 ## Table of Contents
 
-* [LED_Fade](#LED_Fade)
-* [Finite_LED_Blinker](#Finite_LED_Blinker)
+* [LED_Fade](#led-fade)
+* [Finite_LED_Blinker](#finite-led-blinker)
 * [Arduino Review](#arduino-review)
-* [Hello_Functions](#Hello_Functions)
+* [Hello_Functions](#hello-functions)
 
 <br>
 <br>
 
-## LED_Fade
+## LED Fade
 
 ### Description & Code
 
@@ -79,7 +79,7 @@ do a sinusoidal fade and reverse engineered from there, which, after a short per
 <br>
 <br>
 
-## Finite_LED_Blinker
+## Finite LED Blinker
 
 ### Description & Code
 
@@ -306,3 +306,70 @@ Serial monitor.
 This project took longer than I was hoping, which was mostly due to me overdoing the first part of the assignment. Because I made the first part with two 
 LED's, I couldn't reuse a lot of the code in the second part. In the future, I'm going to try to think about how I can plan for the next part of the 
 assignment, and not overdo assignments while still having fun with them.
+
+<br>
+<br>
+
+# Hello Functions
+
+### Description & Code
+
+The goal of the Hello Functions assignment was to make an arduino do something when given the input of an HC-SRO4 ultrasonic sensor, and to use functions 
+in the code which accomplishes this task. What I did was make two LEDs fade in proportion to the distance given by the ultrasonic sensor, and I used two 
+main functions to do so:
+
+##### Get Distance
+
+```C++
+int getDistance() {   //briefly activates the triggerPin to transmit a sound wave, then reads the distance from the echoPin
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+  duration = pulseIn(echoPin, HIGH);
+  distance = duration * 0.034 / 2; // Speed of sound wave divided by 2 (go and back)
+  return distance;
+}
+```
+
+This function reads the distance between an object and the ultrasonic sensor by sending a short pulse to the trigger pin on the sensor (which makes it send 
+out a sound wave), and reading the value given by the echo pin. To get the distance to the object in centimeters, the function then multiplies the time 
+between sending and recieving the sound wave by the speed of sound per cm, and divides it by 2 to account for the bounce back. 
+
+##### Fade LED
+
+```C++
+void fadeLed(int distance, int ledPin, int lowerLimit, int upperLimit) {
+  if ((distance > lowerLimit && distance < upperLimit) || (lowerLimit > upperLimit && distance < lowerLimit && distance > upperLimit)) {
+    int brightness = map(distance, lowerLimit, upperLimit, 0, 255);   //maps the distance value to an LED brightness value
+    Serial.print("Brightness: ");
+    Serial.println(brightness);
+    analogWrite(ledPin, brightness);
+  } else {
+    Serial.println("LED off");
+    analogWrite(ledPin, 0);
+  }
+}
+```
+
+The fadeLed function takes the distance from the ultrasonic sensor, checks if that distance fits between two limits, and maps the distance to an LED 
+brightness value. The upper and lower limits can be any value, but I put them as 30 and 5 for the first LED, and 5 and 30 for the second LED. 
+
+### Evidence
+
+[Code in Arduino Create](https://create.arduino.cc/editor/pschake34/72618de1-6d9e-4545-9732-be7c5ad3353e/preview)
+
+[Project Folder](/hello_functions)
+
+### Images
+
+**Wiring**
+
+<img src="/hello_functions/wiring/wiring.png" height=360px alt="Hello Functions Wiring">
+
+
+
+### Reflection
+
+This assignment was very fun to make, especially because it was the first project where we really had something to interact with. One thing which I was especially happy with was my solution for inverted upper and lower limits in the fadeLed() function. In previous assignments I have used a variety of solutions to this problem (usually involving at least one more if statement), but this time I discovered that I could use || (or) in my if statement so that I could basically combine multiple if statements into one. Personally, I think this is a more elegant solution, though I can't fail to notice how ugly an extremely long if statement is.

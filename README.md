@@ -10,6 +10,7 @@ backup of the code, just in case Arduino Create goes away.
 * [Arduino Review](#arduino-review)
 * [Hello_Functions](#hello-functions)
 * [NewPing](#newping)
+* [Photoresistor](#photoresistor)
 
 <br>
 <br>
@@ -388,7 +389,11 @@ an extremely long if statement is.
 
 ### Description & Code
 
-The NewPing assignment was very similar to the Hello Functions assignment in that the goal was to do something interesting with the output of the HCSR04 ultrasonic sensor. Instead of creating the function which found the distance from the ultrasonic sensor to the object in front of it, we used the NewPing library, which has a handy function to do exactly what we needed. My version of the assignment used the distance from the sensor as the x-value for two sine functions which each changed the value of one of the LEDs. The brightness of each LED is inverse to the other, and the brightness of each LED is visualized in the Serial monitor by [this function](#visualization-of-brightness-1). I also made a function to change the brightness of an LED:
+The NewPing assignment was very similar to the Hello Functions assignment in that the goal was to do something interesting with the output of the HCSR04 
+ultrasonic sensor. Instead of creating the function which found the distance from the ultrasonic sensor to the object in front of it, we used the NewPing 
+library, which has a handy function to do exactly what we needed. My version of the assignment used the distance from the sensor as the x-value for two 
+sine functions which each changed the value of one of the LEDs. The brightness of each LED is inverse to the other, and the brightness of each LED is 
+visualized in the Serial monitor by [this function](#visualization-of-brightness-1). I also made a function to change the brightness of an LED:
 
 ##### Change Brightness
 
@@ -400,7 +405,9 @@ void changeBrightness(int ledPin, int distance, int sineLength, char visualizati
 }
 ```
 
-This function changes the brightness of an LED according to the sensor distance and the sine length. It also visualizes the brightness of the LED in the Serial monitor. In my case, I used a sine length of 20 for both LEDs, and added a compensation of 1/2 the sine length on the sensor distance for one of the LEDs, which made the two LEDs always have the opposite brightness value to each other.
+This function changes the brightness of an LED according to the sensor distance and the sine length. It also visualizes the brightness of the LED in the 
+Serial monitor. In my case, I used a sine length of 20 for both LEDs, and added a compensation of 1/2 the sine length on the sensor distance for one of the 
+LEDs, which made the two LEDs always have the opposite brightness value to each other.
 
 ### Evidence
 
@@ -420,4 +427,55 @@ This function changes the brightness of an LED according to the sensor distance 
 
 ### Reflection
 
-This project was a breeze since I could reuse a lot of code which I had already written. The NewPing library was quite handy, and I especially liked that I could set a maxDistance limit. I ran into no issues, and I'm very happy with my finished product.
+This project was a breeze since I could reuse a lot of code which I had already written. The [NewPing library](https://bitbucket.org/teckel12/arduino-new-ping/wiki/Home) 
+was quite handy, and I especially liked that I could set a maxDistance limit. I ran into no issues, and I'm very happy with my finished product.
+
+<br>
+<br>
+
+# Photoresistor
+
+### Description & Code
+
+The goal of the Photoresistor assignment was to familiarize us with using the component for which the assignment was named. The requirements were to make 
+an LED turn on when the light level from the photoresistor was below a certain threshold. My version also makes the LED get brighter as the light level 
+goes down. I didn't create any functions for this assignment since it was quite simple, so here is my loop() function:
+
+##### Loop
+
+```C++
+void loop() {
+  lightLevel = analogRead(photoRes);
+  if (lightLevel < 20) {  //turn on LED
+    brightness = map(lightLevel, 20, 0, 0, 255);  //makes the LED brighter depending on the light level
+    Serial.println(brightness);
+    analogWrite(ledPin, brightness);
+  } else {  //turn off LED
+    analogWrite(ledPin, 0);
+  }
+}
+```
+
+This function reads the light level from the photoresistor, checks if the light level is below 20, maps the light level to a conventional LED brightness 
+value, and writes that brightness to the LED. If the light level is above 20, it turns off the LED.
+
+### Evidence
+
+[Code in Arduino Create](https://create.arduino.cc/editor/pschake34/2a1fcfbc-0692-438a-8055-b8a5d8e8ee1b/preview)
+
+[Project Folder](/photoresistor)
+
+### Images
+
+**Wiring**
+
+<img src="/photoresistor/wiring/wiring.png" height=360px alt="Photoresistor Wiring">
+
+**Demo of Photoresistor**
+
+<img src="/photoresistor/demo_video/demo.gif" height=360px alt="Photoresistor Demo">
+
+### Reflection
+
+I always enjoy messing around with cool technology, and the photoresistor certainly fits that criteria. Although it was a rather simple assignment, I 
+really enjoyed it, especially since I ran into no problems. 
